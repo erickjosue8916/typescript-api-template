@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "lib": [
+            "es2015"
+        ],
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "removeComments": true,
+        "noEmit": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "baseUrl": "src",
+        "paths": { },
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "compileOnSave": true
+}
