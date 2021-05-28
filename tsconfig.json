@@ -3,7 +3,11 @@
         "target": "es2017",
         "module": "commonjs",
         "lib": [
-            "es2015"
+            "es2015",
+            "ES6"
+        ],
+        "types": [
+            "reflect-metadata"
         ],
         "outDir": "./lib",
         "rootDir": "./src",
@@ -15,6 +19,8 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "baseUrl": "src",
         "paths": { },
         "esModuleInterop": true,
