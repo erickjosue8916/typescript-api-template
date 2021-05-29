@@ -2,29 +2,41 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { Request, Response, NextFunction } from 'express'
 
-import { IUserController } from "./user.controller.interface";
+import { UserActions } from "./userActions.interface";
+import { TYPES } from "./types";
+import { UserActionsService } from "./index";
 
 
 @injectable()
-export class UserController implements IUserController{
+export class UserController implements UserActions{
+  private _userService: UserActionsService
 
-  public async listUsers(_req: Request, res: Response, _next: NextFunction): Promise<Response> {
-    return res.json({ message: `[GET] USERS` })
+  public constructor(
+    @inject(TYPES.UserService) userService: UserActionsService
+  ) {
+    
+    this._userService = userService
   }
 
-  public async getUserById(_req: Request, res: Response, _next: NextFunction): Promise<Response> {
+
+  list = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
+    const result = await this._userService.list(_req.query)
+    return res.json(result)
+  }
+
+  getById = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
     return res.json({ message: `[GET] USER by id` })
   }
 
-  public async getUser(_req: Request, res: Response, _next: NextFunction): Promise<Response> {
+  get = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
     return res.json({ message: `[GET] USER` })
   }
 
-  public async createUser(_req: Request, res: Response, _next: NextFunction): Promise<Response> {
+  create = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
     return res.json({ message: `[POST] CREATE USER` })
   }
 
-  public async updateUser(_req: Request, res: Response, _next: NextFunction): Promise<Response> {
+  update = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
     return res.json({ message: `[PUT] UPDATE USER` })
   }
 }

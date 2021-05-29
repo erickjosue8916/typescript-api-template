@@ -1,30 +1,32 @@
 import { Router } from 'express'
 import { inject, injectable } from "inversify";
 import "reflect-metadata";
-import { IUserController } from "./index";
+import { UserActions } from "./index";
 import { ApplicationRoute } from "../../../repositories/interfaces"
 import { TYPES }  from "./types";
 
 
 @injectable()
 export class UserRouter implements ApplicationRoute {
-  private userController: IUserController
+  private userController: UserActions
 
   public constructor(
-    @inject (TYPES.UserController) userController: IUserController
+    @inject (TYPES.UserController) userController: UserActions
   ) {
+    
     this.userController = userController
   }
 
   public getRouter(): Router {
+    console.log(this)
     const router = Router()
     router.route('/')
-      .get(this.userController.listUsers)
-      .post(this.userController.createUser)
+      .get(this.userController.list)
+      .post(this.userController.create)
 
     router.route('/:userId')
-      .get(this.userController.getUserById)
-      .put(this.userController.updateUser)
+      .get(this.userController.getById)
+      .put(this.userController.update)
     return router
   }
 }

@@ -1,5 +1,6 @@
 export * from './user.controller'
-export * from './user.controller.interface'
+export * from './userActions.interface'
+export * from './userActionsService.interface'
 export * from './user.router'
 export * from './user.service'
 export * from './types'
